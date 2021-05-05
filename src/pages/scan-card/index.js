@@ -5,7 +5,6 @@ import Container from '@material-ui/core/Container'
 
 import { connect, useDispatch, useSelector } from 'react-redux'
 
-
 import Typography from '@material-ui/core/Typography'
 
 import useStyles from '../../utils/styles'
@@ -13,9 +12,7 @@ import useStyles from '../../utils/styles'
 import Layout from '../../components/Layout'
 import WebCamView from '../../components/scan-card/WebCamView'
 
-
 class ScanCard extends React.Component {
-  
   constructor(props) {
     super(props)
 
@@ -28,14 +25,15 @@ class ScanCard extends React.Component {
     const { dispatch, userData, basicData } = this.props
   }
 
- 
   render() {
     const { userData, classes } = this.props
 
     return (
       <Layout menuIndex={0}>
         <Container maxWidth="md" className={classes.rootContainer}>
-          <WebCamView />
+          
+            <WebCamView />
+            
           <Typography
             variant="subtitle2"
             gutterBottom

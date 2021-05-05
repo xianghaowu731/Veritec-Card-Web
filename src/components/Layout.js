@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, navigate } from 'gatsby'
 import ThemeLayout from '../components/ThemeLayout'
 import Container from '@material-ui/core/Container'
@@ -20,15 +20,20 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Header from './header/header'
 
-export default function Layout ({children, menuIndex}){
+import {VColor } from '../utils/constants'
 
 
+export default function Layout({ children, menuIndex }) {
+
+ 
   return (
     <ThemeLayout>
-      <Header menuIndex={menuIndex}/>
+      <Header menuIndex={menuIndex} />
       {children}
+      
+
+      
+
     </ThemeLayout>
   )
 }
-
-

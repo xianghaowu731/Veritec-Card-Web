@@ -36,9 +36,15 @@ const theme = createMuiTheme({
     },
     secondary: {
       light: '#a7c0cd',
-      main: VColor.opacityBlue,
+      main: VColor.red,
       dark: '#4b636e',
       contrastText: '#edf0f2',
+    },
+    third: {
+      light: VColor.opacityWhite,
+      main: VColor.opacityBlue,
+      dark: VColor.darkblue,
+      contrastText: '#fff',
     },
   },
 })

@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
+import { VColor } from './constants'
 
 const useStyles = makeStyles(theme => ({
     formRoot: {
@@ -50,6 +51,48 @@ const useStyles = makeStyles(theme => ({
         float: 'right',
     },
 
+    cardViewGrid: {
+      padding: theme.spacing(2),      
+      color: theme.palette.text.secondary,
+      flexGrow:1 
+    },
+
+    cardViewGridLeft:{
+      padding: theme.spacing(2),      
+      color: theme.palette.text.secondary,
+      flexGrow:1 ,
+      minWidth: 300,
+      maxWidth: 338,
+    },
+
+    cardViewRoot:{
+      maxWidth: '100vw',
+      padding: 20,
+      height:'calc(100vh - 70px)',
+      overflow:'auto',
+      position:'relative',
+      
+    },
+
+    cardTitle:{
+      fontSize: 15,
+      color: VColor.black,      
+    },
+    cardNumber:{
+      fontSize: 15,
+      color: VColor.darkGray,      
+    },
+
+    labelText:{
+      fontSize: 12,
+      color: VColor.darkGray,      
+    },
+
+    mainText:{
+      fontSize: 16,
+      color: VColor.darkGray,      
+    },
+
   }))
   
   export const forgotPwdStyles = makeStyles(theme => ({
@@ -75,6 +118,7 @@ const useStyles = makeStyles(theme => ({
       width: '80%',
       paddingTop: 60,
     },
+
   }))
   
   export const indexStyles = makeStyles(theme => ({

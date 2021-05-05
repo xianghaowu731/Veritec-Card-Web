@@ -77,7 +77,7 @@ const Header = ({ menuIndex }) => {
               key={item.label}
               style={{ marginTop: 6, backgroundColor: menuIndex == index ? VColor.opacityBlue : VColor.white }}
             >
-              <ListItemText primary={item.label} />             
+              <ListItemText primary={item.label}/>             
             </ListItem>
           </Link>
         ))}
@@ -111,7 +111,7 @@ const Header = ({ menuIndex }) => {
               {menuItems.map((one, index) => {
                 return (
                   <Link to={one.link}>
-                    <Button color="secondary" style={{ position: 'relative' }}>
+                    <Button  style={{ position: 'relative', color: VColor.opacityBlue }}>
                       {one.label}
                       {index == menuIndex ? (
                         <div
@@ -133,7 +133,7 @@ const Header = ({ menuIndex }) => {
             <div className={classes.grow} />
             <div style={{ margin: '8px 0 0 20px' }}>
               <Link to={'/'} replace>
-                <Button color="secondary">sign out</Button>
+                <Button style={{color: VColor.opacityBlue}}>sign out</Button>
               </Link>
             </div>
           </>

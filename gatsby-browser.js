@@ -1,9 +1,9 @@
 import './src/utils/theme.css'
 
 
-console.error=()=>{}
-console.warn = ()=>{}
-console.log = ()=>{}
+// console.error=()=>{}
+// console.warn = ()=>{}
+// console.log = ()=>{}
 
 export const onInitialClientRender = () => {
     setTimeout(function() {
