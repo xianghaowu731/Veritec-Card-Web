@@ -5,16 +5,14 @@ import Container from '@material-ui/core/Container'
 
 import { connect, useDispatch, useSelector } from 'react-redux'
 
-
 import Typography from '@material-ui/core/Typography'
 
 import useStyles from '../../utils/styles'
 
 import Layout from '../../components/Layout'
-
+import RSSGray from '../../assets/images/rss-gray.png'
 
 class NFCRead extends React.Component {
-  
   constructor(props) {
     super(props)
 
@@ -27,14 +25,32 @@ class NFCRead extends React.Component {
     const { dispatch, userData, basicData } = this.props
   }
 
- 
   render() {
     const { userData, classes } = this.props
 
     return (
       <Layout menuIndex={1}>
-        <Container maxWidth="md" className={classes.rootContainer}>
-          
+        <Container
+          maxWidth="md"
+          className={classes.rootContainer}
+          style={{ maxWidth: 'calc(100% - 30px )' }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              height: 'calc(100vh - 80px)',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img draggable={false} src={RSSGray} style={{ width: 80, height: 80 }}></img>
+            <div style={{ textAlign: 'center' }}>
+              <span className={classes.mainTitle}>
+                Touch an NFC-enabled card to your card reader.
+              </span>
+            </div>
+          </div>
           <Typography
             variant="subtitle2"
             gutterBottom

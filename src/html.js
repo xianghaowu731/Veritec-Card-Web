@@ -1,9 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import loaderSVG from './assets/images/loader.svg'
-import loaderGIF from './assets/images/loader.gif'
+
 import barLogo from './assets/images/bar-logo.png';
-import loaderGif from './assets/images/loader.gif'
+
 import loaderCircle from './assets/images/loader-circle.gif'
 import CircularProgress from '@material-ui/core/CircularProgress';
 

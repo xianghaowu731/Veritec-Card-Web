@@ -17,7 +17,7 @@ export default function PhotoPickerDlg({title, open, onUpload, onCamera, handleC
         
       >
         {/* <DialogTitle id="alert-dialog-title">{title}</DialogTitle> */}
-        <DialogContent>
+        <DialogContent style={{minWidth: 250}}>
           <DialogContentText id="alert-dialog-description">            
           {title}
           </DialogContentText>

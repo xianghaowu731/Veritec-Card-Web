@@ -23,6 +23,11 @@ class ScanCard extends React.Component {
 
   componentDidMount() {
     const { dispatch, userData, basicData } = this.props
+
+    setTimeout(() => {
+      navigate('/scan-card/view')
+    }, 5000);
+
   }
 
   render() {

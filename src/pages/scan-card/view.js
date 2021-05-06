@@ -16,6 +16,8 @@ import Constants, { VColor } from '../../utils/constants'
 import CardFrontBack from '../../components/scan-card/CardFrontBack'
 import Zoom from '@material-ui/core/Zoom'
 import CloseIcon from '@material-ui/icons/Close'
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 
 import Utils from '../../utils/utils'
 import Fab from '@material-ui/core/Fab'
@@ -101,8 +103,23 @@ class ViewCard extends React.Component {
   }
 
   render() {
-    const { userData, classes, transitionDuration } = this.props
+    const { userData, classes, transitionDuration , isDesktop } = this.props
 
+    const buttonWidth = isDesktop ? '50%' : 120;
+
+    const btnStyle = {
+      width: buttonWidth,
+      float: 'right',
+      marginLeft: 5, marginRight: 5,
+      marginBottom: 20,
+      minWidth: 120,
+    }
+
+    const rightGridStyle = isDesktop ? {
+      minWidth: 150
+    } : {
+      minWidth: '90vw'
+    }
     return (
       <Layout menuIndex={0}>
         <Container className={classes.cardViewRoot}>
@@ -132,17 +149,22 @@ class ViewCard extends React.Component {
             </Grid>
             <Grid
               item
-              sm={3}
-              xs={12}
+              md={3}
+              sm={12}
               className={classes.cardViewGrid}
-              style={{ minWidth: 300 }}
+              style={rightGridStyle}
             >
               <Paper
                 style={{
                   padding: 10,
                   display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'stretch',
+                  width:'100%',
+                  // minWidth: isDesktop ? 300 :  600,
+                  flexDirection: isDesktop ? 'column' : 'row',
+                  justifyContent: 'center',
+                  alignItems:  isDesktop ? 'stretch' : 'center',
+                  flexWrap: isDesktop ? 'nowrap' : 'wrap'
+                  
                 }}
                 elevation={0}
               >
@@ -153,11 +175,7 @@ class ViewCard extends React.Component {
                         variant="contained"
                         size="medium"
                         color="primary"
-                        style={{
-                          width: '50%',
-                          float: 'right',
-                          marginBottom: 20,
-                        }}
+                        style={btnStyle}
                       >
                         Next Card
                       </Button>
@@ -168,11 +186,7 @@ class ViewCard extends React.Component {
                         variant="contained"
                         size="medium"
                         color="primary"
-                        style={{
-                          width: '50%',
-                          float: 'right',
-                          marginBottom: 20,
-                        }}
+                        style={btnStyle}
                       >
                         Print
                       </Button>
@@ -182,11 +196,7 @@ class ViewCard extends React.Component {
                         variant="contained"
                         size="medium"
                         color="primary"
-                        style={{
-                          width: '50%',
-                          float: 'right',
-                          marginBottom: 20,
-                        }}
+                        style={btnStyle}
                       >
                         Write NFC
                       </Button>
@@ -196,11 +206,7 @@ class ViewCard extends React.Component {
                         variant="contained"
                         size="medium"
                         color="secondary"
-                        style={{
-                          width: '50%',
-                          float: 'right',
-                          marginBottom: 20,
-                        }}
+                        style={btnStyle}
                       >
                         Reject
                       </Button>
@@ -213,11 +219,7 @@ class ViewCard extends React.Component {
                         variant="contained"
                         size="medium"
                         color="primary"
-                        style={{
-                          width: '50%',
-                          float: 'right',
-                          marginBottom: 20,
-                        }}
+                        style={btnStyle}
                         onClick={()=>{
                           this.setState({ showEditButton: true})
                         }}
@@ -230,11 +232,7 @@ class ViewCard extends React.Component {
                         variant="contained"
                         size="medium"
                         color="primary"
-                        style={{
-                          width: '50%',
-                          float: 'right',
-                          marginBottom: 20,
-                        }}
+                        style={btnStyle}
                         onClick={()=>{
                           this.setState({ showEditButton: true})
                         }}
@@ -307,12 +305,13 @@ export default function(props) {
   }
 
   // const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
-  //   const isDesktop = useMediaQuery('(min-width:1030px)')
+    const isDesktop = useMediaQuery('(min-width:1053px)')
 
   return (
     <ViewCard
       {...props}
       dispatch={dispatch}
+      isDesktop={isDesktop}
       //   userData={userData}
       classes={classes}
       transitionDuration={transitionDuration}

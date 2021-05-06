@@ -170,7 +170,7 @@ export default function CardFrontBack({ editMode = false }) {
               position: 'absolute',
               left: 0,
               right: 0,
-              bottom: 0,
+              bottom: 17,
               top: 0,
               backgroundColor: editMode
                 ? VColor.opacityBlack
