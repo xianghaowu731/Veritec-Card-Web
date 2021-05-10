@@ -53,7 +53,7 @@ const DialogActions = withStyles((theme) => ({
 
 
 
-function AlertDlg({title, body, isOpen, onOk, onCancel, onClose}) {
+export function AlertDlg({title, body, okTitle="Ok", cancelTitle="Cancel", isOpen, onOk, onCancel, onClose}) {
   // const [open, setOpen] = React.useState(false);
   // const theme = useTheme();
   // const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -80,6 +80,7 @@ function AlertDlg({title, body, isOpen, onOk, onCancel, onClose}) {
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {title}
         </DialogTitle>
+        
         <DialogContent dividers>
           <Typography gutterBottom>
             {body}
@@ -87,10 +88,10 @@ function AlertDlg({title, body, isOpen, onOk, onCancel, onClose}) {
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleCancel} color="secondary">
-            Cancel
+            {cancelTitle}
           </Button>
           <Button autoFocus onClick={handleOk} color="primary">
-            Ok
+            {okTitle}
           </Button>
         </DialogActions>
       </Dialog>

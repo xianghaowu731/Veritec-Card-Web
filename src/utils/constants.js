@@ -11,7 +11,7 @@ export const VColor = {
   darkGray: '#666666',
   red: '#B00020',
   lightGreen:'#B4FC9B',
-  opacityBlack:'#0009',
+  opacityBlack:'#0003',
   transparent:'#0000'
 };
 

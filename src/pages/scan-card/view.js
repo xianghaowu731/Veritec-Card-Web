@@ -88,7 +88,7 @@ const cardFields = [
   },
 ]
 
-class ViewCard extends React.Component {
+export class ViewCard extends React.Component {
   constructor(props) {
     super(props)
 
@@ -121,7 +121,7 @@ class ViewCard extends React.Component {
       minWidth: '90vw'
     }
     return (
-      <Layout menuIndex={0}>
+      <Layout menuIndex={this.props.menuIndex}>
         <Container className={classes.cardViewRoot}>
           <Grid container justify="center" spacing={2}>
             <Grid item sm={4} xs={12} className={classes.cardViewGridLeft}>
@@ -310,6 +310,7 @@ export default function(props) {
   return (
     <ViewCard
       {...props}
+      menuIndex = {0}
       dispatch={dispatch}
       isDesktop={isDesktop}
       //   userData={userData}

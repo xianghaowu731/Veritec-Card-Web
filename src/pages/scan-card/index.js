@@ -26,7 +26,7 @@ class ScanCard extends React.Component {
 
     setTimeout(() => {
       navigate('/scan-card/view')
-    }, 5000);
+    }, 2000);
 
   }
 

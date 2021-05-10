@@ -4,7 +4,7 @@ import { VColor } from './constants'
 const useStyles = makeStyles(theme => ({
     formRoot: {
       '& > *': {
-        marginBottom: theme.spacing(4),
+        marginBottom: theme.spacing(0),
       },
     },
     grow:{
@@ -12,6 +12,10 @@ const useStyles = makeStyles(theme => ({
     },
     tollbar: {
       minHeight: 55,
+    },
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
     },
     menuList:{    
       width: 220,    
@@ -68,6 +72,7 @@ const useStyles = makeStyles(theme => ({
     cardViewRoot:{
       maxWidth: '100vw',
       padding: 20,
+      paddingBottom: 5,
       height:'calc(100vh - 70px)',
       overflow:'auto',
       position:'relative',

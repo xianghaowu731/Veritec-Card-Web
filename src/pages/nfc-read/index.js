@@ -23,6 +23,15 @@ class NFCRead extends React.Component {
 
   componentDidMount() {
     const { dispatch, userData, basicData } = this.props
+
+    setTimeout(() => {
+      navigate('/nfc-read/view')
+    }, 2000);
+
+  }
+
+  onClickNFC = ()=>{
+    navigate('/nfc-read/view')
   }
 
   render() {
@@ -43,6 +52,7 @@ class NFCRead extends React.Component {
               justifyContent: 'center',
               alignItems: 'center',
             }}
+            onClick={this.onClickNFC}
           >
             <img draggable={false} src={RSSGray} style={{ width: 80, height: 80 }}></img>
             <div style={{ textAlign: 'center' }}>

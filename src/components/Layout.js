@@ -20,20 +20,18 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Header from './header/header'
 
-import {VColor } from '../utils/constants'
+import { VColor } from '../utils/constants'
 
+import useStyles from '../utils/styles'
 
 export default function Layout({ children, menuIndex }) {
+  const classes = useStyles()
 
- 
   return (
     <ThemeLayout>
       <Header menuIndex={menuIndex} />
       {children}
-      
-
-      
-
+     
     </ThemeLayout>
   )
 }
