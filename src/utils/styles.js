@@ -25,9 +25,10 @@ const useStyles = makeStyles(theme => ({
     },
     rootContainer: {
       padding: 0,  
+      paddingLeft: 10, paddingRight: 10,
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       alignItems: 'center',
       overflow: 'hidden',
     },

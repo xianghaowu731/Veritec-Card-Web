@@ -1,13 +1,15 @@
 import {
   
   STORE_USER_DATA,
-  SET_SEL_ORDER_CARD_FRONT
+  SET_SEL_ORDER_CARD_FRONT,
+  SET_SEL_CARD
 } from './constants'
 
 const initialState = {
   
   userData: null,
-  selOrderCardFront:undefined
+  selOrderCardFront:undefined,
+  selCard: {}
 }
 
 import { navigate } from 'gatsby'
@@ -24,6 +26,11 @@ export default (state = initialState, action) => {
       return {
         ...state, 
         selOrderCardFront: action.data
+      }
+    case SET_SEL_CARD:
+      return {
+        ...state,
+        selCard: action.data
       }
     default:
       return state

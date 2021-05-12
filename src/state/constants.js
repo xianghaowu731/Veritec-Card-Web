@@ -1,3 +1,5 @@
 export const STORE_USER_DATA = "STORE_USER_DATA"
 
 export const SET_SEL_ORDER_CARD_FRONT = "SET_SEL_ORDER_CARD_FRONT"
+
+export const SET_SEL_CARD = "SET_SEL_CARD"

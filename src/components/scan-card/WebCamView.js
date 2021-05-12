@@ -23,7 +23,7 @@ export default function WebCamView (props){
     const webcamRef = React.useRef()
       
     return (
-        <Paper elevation={0} style={{width:'80%', maxHeight:'80%'}} >
+        <Paper elevation={0} style={{width:'80%', maxHeight:'80%'}} onClick={props.onClick}>
         <div style={{ marginTop: 40, position: 'relative' }}>
           <Webcam
             audio={false}

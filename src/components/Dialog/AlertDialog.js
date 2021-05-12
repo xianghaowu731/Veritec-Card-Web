@@ -1,20 +1,19 @@
+import React, { Component } from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog'
+import MuiDialogTitle from '@material-ui/core/DialogTitle'
+import MuiDialogContent from '@material-ui/core/DialogContent'
+import MuiDialogActions from '@material-ui/core/DialogActions'
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
+import Typography from '@material-ui/core/Typography'
 
-import React, {Component} from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-
-const styles = (theme) => ({
+const styles = theme => ({
   root: {
     margin: 0,
     padding: theme.spacing(2),
-    width: '90vw'
+    width: '90vw',
   },
   closeButton: {
     position: 'absolute',
@@ -22,125 +21,151 @@ const styles = (theme) => ({
     top: theme.spacing(1),
     color: theme.palette.grey[500],
   },
-});
+})
 
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
+const DialogTitle = withStyles(styles)(props => {
+  const { children, classes, onClose, ...other } = props
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="subtitle2" style={{fontStyle:'normal'}}>{children}</Typography>
+      <Typography variant="subtitle2" style={{ fontStyle: 'normal' }}>
+        {children}
+      </Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
           <CloseIcon />
         </IconButton>
       ) : null}
     </MuiDialogTitle>
-  );
-});
+  )
+})
 
-const DialogContent = withStyles((theme) => ({
+const DialogContent = withStyles(theme => ({
   root: {
     padding: theme.spacing(2),
   },
-}))(MuiDialogContent);
+}))(MuiDialogContent)
 
-const DialogActions = withStyles((theme) => ({
+const DialogActions = withStyles(theme => ({
   root: {
     margin: 0,
     padding: theme.spacing(1),
   },
-}))(MuiDialogActions);
+}))(MuiDialogActions)
 
-
-
-export function AlertDlg({title, body, okTitle="Ok", cancelTitle="Cancel", isOpen, onOk, onCancel, onClose}) {
+export function AlertDlg({
+  title,
+  body,
+  okTitle = 'Ok',
+  cancelTitle,
+  isOpen,
+  onOk,
+  onCancel,
+  onClose,
+}) {
   // const [open, setOpen] = React.useState(false);
   // const theme = useTheme();
   // const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleOk = () => {
     onClose()
-    onOk();
-  };
+    onOk()
+  }
 
-  const handleCancel = ()=>{
+  const handleCancel = () => {
     onClose()
     onCancel()
   }
 
-
   const handleClose = () => {
-    onClose();
-  };
+    onClose()
+  }
 
   return (
     <div>
-      
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={isOpen}>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+      <Dialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={isOpen}
+      >
+        {/* <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {title}
-        </DialogTitle>
-        
+        </DialogTitle> */}
+
         <DialogContent dividers>
-          <Typography gutterBottom>
-            {body}
-          </Typography>          
+          <Typography variant="subtitle1" gutterBottom>
+            {title}
+          </Typography>
+          <Typography gutterBottom>{body}</Typography>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleCancel} color="secondary">
-            {cancelTitle}
-          </Button>
+          {cancelTitle ? (
+            <Button autoFocus onClick={handleCancel} color="secondary">
+              {cancelTitle}
+            </Button>
+          ) : null}
+
           <Button autoFocus onClick={handleOk} color="primary">
             {okTitle}
           </Button>
         </DialogActions>
       </Dialog>
     </div>
-  );
+  )
 }
 
-export default class AlertDialog extends React.Component{
-
-
-  constructor(props){
-    super(props)    
+export default class AlertDialog extends React.Component {
+  constructor(props) {
+    super(props)
     this.state = {
-      isOpen: false
+      isOpen: false,
+      onOk: props.onOk ? props.onOk : this.onOk
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {}
+  componentWillUnmount() {}
 
-  }
-  componentWillUnmount(){
-
-  }
-
-  showDialog = (title, body)=>{
+  showDialog = (title, body, onOk) => {
     this.setState({
       isOpen: true,
       title: title,
-      body: body
+      body: body,
+      onOk: onOk ? onOk : this.onOk
     })
+    
   }
 
-  close = ()=>{
-    this.setState({ isOpen: false})
+  close = () => {
+    this.setState({ isOpen: false })
   }
 
-  onOk = ()=>{
-    if(this.props.onOk){
+  onOk = () => {
+    if (this.props.onOk) {
       this.props.onOk()
     }
     close()
   }
 
-  render(){
+  render() {
+    const { title, body, isOpen } = this.state
 
-    const {
-      title, body, isOpen
-    } = this.state
+    const { okTitle, cancelTitle } = this.props
 
-    return <AlertDlg title={title} body={body} isOpen={isOpen} onOk={this.onOk} onCancel={this.close} onClose={this.close}/>
+    return (
+      <AlertDlg
+        title={title}
+        okTitle={okTitle}
+        cancelTitle={cancelTitle}
+        body={body}
+        isOpen={isOpen}
+        onOk={this.state.onOk}
+        onCancel={this.close}
+        onClose={this.close}
+      />
+    )
   }
 }

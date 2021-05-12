@@ -10,19 +10,19 @@ import Button from '@material-ui/core/Button'
 
 import useStyles from '../../utils/styles'
 
-import Layout from '../../components/Layout'
+import Layout, { MainLayout } from '../../components/Layout'
 import { Grid, Paper, useTheme } from '@material-ui/core'
 import Constants, { VColor } from '../../utils/constants'
 import CardFrontBack from '../../components/scan-card/CardFrontBack'
 import Zoom from '@material-ui/core/Zoom'
 import CloseIcon from '@material-ui/icons/Close'
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import Utils from '../../utils/utils'
 import Fab from '@material-ui/core/Fab'
 import EditImg from '../../assets/images/edit.png'
 import FilledTextInput from '../../components/scan-card/FilledTextInput'
+import Footer from '../../components/footer/footer'
 
 const cardFields = [
   {
@@ -103,192 +103,179 @@ export class ViewCard extends React.Component {
   }
 
   render() {
-    const { userData, classes, transitionDuration , isDesktop } = this.props
+    const { userData, classes, transitionDuration, isDesktop } = this.props
 
-    const buttonWidth = isDesktop ? '50%' : 120;
+    const buttonWidth = isDesktop ? '50%' : 120
 
     const btnStyle = {
       width: buttonWidth,
       float: 'right',
-      marginLeft: 5, marginRight: 5,
+      marginLeft: 5,
+      marginRight: 5,
       marginBottom: 20,
       minWidth: 120,
     }
 
-    const rightGridStyle = isDesktop ? {
-      minWidth: 150
-    } : {
-      minWidth: '90vw'
-    }
+    const rightGridStyle = isDesktop
+      ? {
+          minWidth: 150,
+        }
+      : {
+          minWidth: '90vw',
+        }
     return (
-      <Layout menuIndex={this.props.menuIndex}>
-        <Container className={classes.cardViewRoot}>
-          <Grid container justify="center" spacing={2}>
-            <Grid item sm={4} xs={12} className={classes.cardViewGridLeft}>
-              <CardFrontBack editMode={!this.state.showEditButton} />
-            </Grid>
-            <Grid
-              item
-              sm={5}
-              xs={12}
-              className={classes.cardViewGrid}
-              style={{ marginRight: 5 }}
-            >
-              <Paper style={{ padding: '0 10px' }} elevation={0}>
-                {cardFields.map((one, index) => {
-                  return (
-                    <FilledTextInput
-                      key={Utils.getKey()}
-                      label={one.label}
-                      type={one.type}
-                      placeholder={one.placeholder}
-                    />
-                  )
-                })}
-              </Paper>
-            </Grid>
-            <Grid
-              item
-              md={3}
-              sm={12}
-              className={classes.cardViewGrid}
-              style={rightGridStyle}
-            >
-              <Paper
-                style={{
-                  padding: 10,
-                  display: 'flex',
-                  width:'100%',
-                  // minWidth: isDesktop ? 300 :  600,
-                  flexDirection: isDesktop ? 'column' : 'row',
-                  justifyContent: 'center',
-                  alignItems:  isDesktop ? 'stretch' : 'center',
-                  flexWrap: isDesktop ? 'nowrap' : 'wrap'
-                  
-                }}
-                elevation={0}
-              >
-                {this.state.showEditButton ? (
-                  <>
-                    <div>
-                      <Button
-                        variant="contained"
-                        size="medium"
-                        color="primary"
-                        style={btnStyle}
-                      >
-                        Next Card
-                      </Button>
-                    </div>
-
-                    <div>
-                      <Button
-                        variant="contained"
-                        size="medium"
-                        color="primary"
-                        style={btnStyle}
-                      >
-                        Print
-                      </Button>
-                    </div>
-                    <div>
-                      <Button
-                        variant="contained"
-                        size="medium"
-                        color="primary"
-                        style={btnStyle}
-                      >
-                        Write NFC
-                      </Button>
-                    </div>
-                    <div>
-                      <Button
-                        variant="contained"
-                        size="medium"
-                        color="secondary"
-                        style={btnStyle}
-                      >
-                        Reject
-                      </Button>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div>
-                      <Button
-                        variant="contained"
-                        size="medium"
-                        color="primary"
-                        style={btnStyle}
-                        onClick={()=>{
-                          this.setState({ showEditButton: true})
-                        }}
-                      >
-                        save
-                      </Button>
-                    </div>
-                    <div>
-                      <Button
-                        variant="contained"
-                        size="medium"
-                        color="primary"
-                        style={btnStyle}
-                        onClick={()=>{
-                          this.setState({ showEditButton: true})
-                        }}
-                      >
-                        cancel
-                      </Button>
-                    </div>
-                  </>
-                )}
-              </Paper>
-            </Grid>
+      <MainLayout menuIndex={this.props.menuIndex}>
+        <Grid
+          container
+          justify="center"
+          spacing={2}
+          style={{ minHeight: '100%' }}
+        >
+          <Grid item sm={4} xs={12} className={classes.cardViewGridLeft}>
+            <CardFrontBack editMode={!this.state.showEditButton} />
           </Grid>
-
-          <div
-            style={{
-              //   position: 'fixed',
-              //   bottom: 0,
-              width: '100%',
-              textAlign: 'center',
-
-              backgroundColor: VColor.white,
-            }}
+          <Grid
+            item
+            sm={5}
+            xs={12}
+            className={classes.cardViewGrid}
+            style={{ marginRight: 5 }}
           >
-            <Typography
-              variant="subtitle2"
-              gutterBottom
-              style={{ fontStyle: 'normal' }}
-            >
-              Powered by Veritec © 2020
-            </Typography>
-          </div>
-          <Zoom
-            key={Utils.getKey()}
-            in={this.state.showEditButton}
-            timeout={transitionDuration}
-            style={{
-              transitionDelay: `${500}ms`,
-            }}
-            unmountOnExit
+            <Paper style={{ padding: '0 10px' }} elevation={0}>
+              {cardFields.map((one, index) => {
+                return (
+                  <FilledTextInput
+                    key={Utils.getKey()}
+                    label={one.label}
+                    type={one.type}
+                    placeholder={one.placeholder}
+                  />
+                )
+              })}
+            </Paper>
+          </Grid>
+          <Grid
+            item
+            md={3}
+            sm={12}
+            className={classes.cardViewGrid}
+            style={rightGridStyle}
           >
-            <Fab
-              aria-label={''}
-              style={{ position: 'fixed', bottom: 20, right: 30 }}
-              color={'primary'}
-              onClick={() => {
-                this.setState({ showEditButton: !this.state.showEditButton })
+            <Paper
+              style={{
+                padding: 10,
+                display: 'flex',
+                width: '100%',
+
+                flexDirection: isDesktop ? 'column' : 'row',
+                justifyContent: 'center',
+                alignItems: isDesktop ? 'stretch' : 'center',
+                flexWrap: isDesktop ? 'nowrap' : 'wrap',
               }}
+              elevation={0}
             >
-              <img
-                src={EditImg}
-                style={{ width: 25, objectFit: 'contain', marginTop: 25 }}
-              />
-            </Fab>
-          </Zoom>
-        </Container>
-      </Layout>
+              {this.state.showEditButton ? (
+                <>
+                  <div>
+                    <Button
+                      variant="contained"
+                      size="medium"
+                      color="primary"
+                      style={btnStyle}
+                    >
+                      Next Card
+                    </Button>
+                  </div>
+
+                  <div>
+                    <Button
+                      variant="contained"
+                      size="medium"
+                      color="primary"
+                      style={btnStyle}
+                    >
+                      Print
+                    </Button>
+                  </div>
+                  <div>
+                    <Button
+                      variant="contained"
+                      size="medium"
+                      color="primary"
+                      style={btnStyle}
+                    >
+                      Write NFC
+                    </Button>
+                  </div>
+                  <div>
+                    <Button
+                      variant="contained"
+                      size="medium"
+                      color="secondary"
+                      style={btnStyle}
+                    >
+                      Reject
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <Button
+                      variant="contained"
+                      size="medium"
+                      color="primary"
+                      style={btnStyle}
+                      onClick={() => {
+                        this.setState({ showEditButton: true })
+                      }}
+                    >
+                      save
+                    </Button>
+                  </div>
+                  <div>
+                    <Button
+                      variant="contained"
+                      size="medium"
+                      color="primary"
+                      style={btnStyle}
+                      onClick={() => {
+                        this.setState({ showEditButton: true })
+                      }}
+                    >
+                      cancel
+                    </Button>
+                  </div>
+                </>
+              )}
+            </Paper>
+          </Grid>
+        </Grid>
+
+        <Zoom
+          key={Utils.getKey()}
+          in={this.state.showEditButton}
+          timeout={transitionDuration}
+          style={{
+            transitionDelay: `${500}ms`,
+          }}
+          unmountOnExit
+        >
+          <Fab
+            aria-label={''}
+            style={{ position: 'fixed', bottom: 20, right: 30 }}
+            color={'primary'}
+            onClick={() => {
+              this.setState({ showEditButton: !this.state.showEditButton })
+            }}
+          >
+            <img
+              src={EditImg}
+              style={{ width: 25, objectFit: 'contain', marginTop: 25 }}
+            />
+          </Fab>
+        </Zoom>
+      </MainLayout>
     )
   }
 }
@@ -305,12 +292,12 @@ export default function(props) {
   }
 
   // const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
-    const isDesktop = useMediaQuery('(min-width:1053px)')
+  const isDesktop = useMediaQuery('(min-width:1053px)')
 
   return (
     <ViewCard
       {...props}
-      menuIndex = {0}
+      menuIndex={0}
       dispatch={dispatch}
       isDesktop={isDesktop}
       //   userData={userData}

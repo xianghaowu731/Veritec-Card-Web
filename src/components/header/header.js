@@ -32,6 +32,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
 import { VColor } from '../../utils/constants'
+import Utils from '../../utils/utils'
 
 const menuItems = [
   { label: 'SCAN CARD', link: '/scan-card' },
@@ -71,7 +72,7 @@ const Header = ({ menuIndex }) => {
     >
       <List>
         {menuItems.map((item, index) => (
-          <Link to={item.link}>
+          <Link to={item.link} key={Utils.getKey()}>
             <ListItem
               button
               key={item.label}
@@ -85,7 +86,7 @@ const Header = ({ menuIndex }) => {
       <Divider />
       <List>
         {['SIGN OUT'].map((text, index) => (
-          <Link to={'/'}>
+          <Link to={'/'} key={Utils.getKey()}>
             <ListItem button key={text}>
               <ListItemText primary={text} />
             </ListItem>
@@ -100,7 +101,7 @@ const Header = ({ menuIndex }) => {
       <Toolbar className={classes.tollbar}>
         <img src={logoTrans} style={{ width: 32, height: 32, margin: 0 }} />
         <Typography
-          variant="body"
+          variant="body1"
           style={{ marginLeft: 10, fontSize: 24, fontWeight: '200' }}
         >
           Veritec
@@ -110,7 +111,7 @@ const Header = ({ menuIndex }) => {
             <div style={{ margin: '8px 0 0 20px' }}>
               {menuItems.map((one, index) => {
                 return (
-                  <Link to={one.link}>
+                  <Link to={one.link} key={Utils.getKey()}>
                     <Button  style={{ position: 'relative', color: VColor.opacityBlue }}>
                       {one.label}
                       {index == menuIndex ? (

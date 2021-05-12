@@ -9,8 +9,9 @@ import Typography from '@material-ui/core/Typography'
 
 import useStyles from '../../utils/styles'
 
-import Layout from '../../components/Layout'
+import Layout, { MainLayout } from '../../components/Layout'
 import RSSGray from '../../assets/images/rss-gray.png'
+import Footer from '../../components/footer/footer'
 
 class NFCRead extends React.Component {
   constructor(props) {
@@ -25,12 +26,11 @@ class NFCRead extends React.Component {
     const { dispatch, userData, basicData } = this.props
 
     setTimeout(() => {
-      navigate('/nfc-read/view')
-    }, 2000);
-
+      // navigate('/nfc-read/view')
+    }, 2000)
   }
 
-  onClickNFC = ()=>{
+  onClickNFC = () => {
     navigate('/nfc-read/view')
   }
 
@@ -38,38 +38,30 @@ class NFCRead extends React.Component {
     const { userData, classes } = this.props
 
     return (
-      <Layout menuIndex={1}>
-        <Container
-          maxWidth="md"
-          className={classes.rootContainer}
-          style={{ maxWidth: 'calc(100% - 30px )' }}
+      <MainLayout menuIndex={1}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            height: 'calc(100vh - 100px)',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          onClick={this.onClickNFC}
         >
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              height: 'calc(100vh - 80px)',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-            onClick={this.onClickNFC}
-          >
-            <img draggable={false} src={RSSGray} style={{ width: 80, height: 80 }}></img>
-            <div style={{ textAlign: 'center' }}>
-              <span className={classes.mainTitle}>
-                Touch an NFC-enabled card to your card reader.
-              </span>
-            </div>
+          <img
+            draggable={false}
+            src={RSSGray}
+            style={{ width: 80, height: 80 }}
+          ></img>
+          <div style={{ textAlign: 'center' }}>
+            <span className={classes.mainTitle}>
+              Touch an NFC-enabled card to your card reader.
+            </span>
           </div>
-          <Typography
-            variant="subtitle2"
-            gutterBottom
-            style={{ position: 'absolute', bottom: 10, fontStyle: 'normal' }}
-          >
-            Powered by Veritec © 2020
-          </Typography>
-        </Container>
-      </Layout>
+        </div>
+      
+      </MainLayout>
     )
   }
 }

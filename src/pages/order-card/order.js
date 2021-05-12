@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button'
 
 import useStyles from '../../utils/styles'
 
-import Layout from '../../components/Layout'
+import Layout, { MainLayout } from '../../components/Layout'
 import {
   Backdrop,
   CircularProgress,
@@ -31,6 +31,7 @@ import FilledTextInput from '../../components/scan-card/FilledTextInput'
 import CardFrontPhoto from '../../components/OrderCard/CardFrontPhoto'
 import { AlertDlg } from '../../components/Dialog/AlertDialog'
 import { ConfirmDlg } from '../../components/Dialog/PhotoPickerDlg'
+import Footer from '../../components/footer/footer'
 
 const cardFields = [
   {
@@ -106,13 +107,13 @@ export class OrderCard extends React.Component {
   }
 
   onConfirmOrder = () => {
-    this.setState({ loader: true, openOrderConfirm: false, })
+    this.setState({ loader: true, openOrderConfirm: false })
 
     setTimeout(() => {
       this.setState({
         resultTitle: 'Your card has been ordered',
-        openResultDlg: true,        
-        loader:false,
+        openResultDlg: true,
+        loader: false,
       })
     }, 3000)
   }
@@ -146,86 +147,67 @@ export class OrderCard extends React.Component {
         }
 
     return (
-      <Layout menuIndex={this.props.menuIndex}>
-        <Container className={classes.cardViewRoot}>
-          <div
-            style={{
-              minHeight: '100%',
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'flex-start',
-            }}
+      <MainLayout menuIndex={2}>
+        <Grid container justify="center" spacing={2}>
+          <Grid item sm={4} xs={12} className={classes.cardViewGridLeft}>
+            <CardFrontPhoto cardFrontImage={selOrderCardFront} />
+          </Grid>
+          <Grid
+            item
+            sm={5}
+            xs={12}
+            className={classes.cardViewGrid}
+            style={{ marginRight: 5 }}
           >
-            <Grid container justify="center" spacing={2}>
-              <Grid item sm={4} xs={12} className={classes.cardViewGridLeft}>
-                <CardFrontPhoto cardFrontImage={selOrderCardFront} />
-              </Grid>
-              <Grid
-                item
-                sm={5}
-                xs={12}
-                className={classes.cardViewGrid}
-                style={{ marginRight: 5 }}
-              >
-                <Paper style={{ padding: '0 10px' }} elevation={0}>
-                  {cardFields.map((one, index) => {
-                    return (
-                      <FilledTextInput
-                        key={Utils.getKey()}
-                        label={one.label}
-                        type={one.type}
-                        placeholder={one.placeholder}
-                      />
-                    )
-                  })}
-                </Paper>
-              </Grid>
-              <Grid
-                item
-                md={3}
-                sm={12}
-                className={classes.cardViewGrid}
-                style={rightGridStyle}
-              >
-                <Paper
-                  style={{
-                    padding: 10,
-                    display: 'flex',
-                    width: '100%',
-                    // minWidth: isDesktop ? 300 :  600,
-                    flexDirection: isDesktop ? 'column' : 'row',
-                    justifyContent: 'center',
-                    alignItems: isDesktop ? 'stretch' : 'center',
-                    flexWrap: isDesktop ? 'nowrap' : 'wrap',
-                  }}
-                  elevation={0}
+            <Paper style={{ padding: '0 10px' }} elevation={0}>
+              {cardFields.map((one, index) => {
+                return (
+                  <FilledTextInput
+                    key={Utils.getKey()}
+                    label={one.label}
+                    type={one.type}
+                    placeholder={one.placeholder}
+                  />
+                )
+              })}
+            </Paper>
+          </Grid>
+          <Grid
+            item
+            md={3}
+            sm={12}
+            className={classes.cardViewGrid}
+            style={rightGridStyle}
+          >
+            <Paper
+              style={{
+                padding: 10,
+                display: 'flex',
+                width: '100%',
+                // minWidth: isDesktop ? 300 :  600,
+                flexDirection: isDesktop ? 'column' : 'row',
+                justifyContent: 'center',
+                alignItems: isDesktop ? 'stretch' : 'center',
+                flexWrap: isDesktop ? 'nowrap' : 'wrap',
+              }}
+              elevation={0}
+            >
+              <div>
+                <Button
+                  variant="contained"
+                  size="medium"
+                  color="primary"
+                  style={btnStyle}
+                  onClick={this.onSave}
                 >
-                  <div>
-                    <Button
-                      variant="contained"
-                      size="medium"
-                      color="primary"
-                      style={btnStyle}
-                      onClick={this.onSave}
-                    >
-                      save
-                    </Button>
-                  </div>
-                </Paper>
-              </Grid>
-            </Grid>
-
-            <footer style={{ position: 'absolute', bottom: 0, width: '100vw' }}>
-              <div style={{ textAlign: 'center' }}>
-                <Typography variant="subtitle2" gutterBottom>
-                  Powered by Veritec © 2020
-                </Typography>
+                  save
+                </Button>
               </div>
-            </footer>
-          </div>
-        </Container>
+            </Paper>
+          </Grid>
+        </Grid>
+
+
         <ConfirmDlg
           title="You are about to order a card, Are you sure you want to do this?"
           open={this.state.openOrderConfirm}
@@ -252,13 +234,11 @@ export class OrderCard extends React.Component {
         <Backdrop
           className={classes.backdrop}
           open={this.state.loader}
-          // onClick={() => {
-          //   this.setState({ loader: false })
-          // }}
+          
         >
           <CircularProgress color="inherit" />
         </Backdrop>
-      </Layout>
+      </MainLayout>
     )
   }
 }

@@ -13,6 +13,8 @@ import {
   IconButton,
   Menu,
   AppBar,
+  Backdrop,
+  CircularProgress,
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 
@@ -21,7 +23,7 @@ import Typography from '@material-ui/core/Typography'
 import Header from './header/header'
 
 import { VColor } from '../utils/constants'
-
+import Footer from './footer/footer'
 import useStyles from '../utils/styles'
 
 export default function Layout({ children, menuIndex }) {
@@ -31,7 +33,40 @@ export default function Layout({ children, menuIndex }) {
     <ThemeLayout>
       <Header menuIndex={menuIndex} />
       {children}
-     
     </ThemeLayout>
+  )
+}
+
+export function MainLayout(props) {
+  const classes = useStyles()
+
+  
+  
+  return (
+    <Layout menuIndex={props.menuIndex}>
+      <Container maxWidth="md" className={classes.cardViewRoot} style={{...props.style,}}>
+        <div
+          style={{
+            minHeight: '100%',
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+            paddingBottom: 30,
+            maxWidth: 1500,
+            marginLeft:'auto',
+            marginRight:'auto'
+          }}
+        >
+          {props.children}
+          <Footer />
+        </div>
+      </Container>
+      
+      <Backdrop className={classes.backdrop} open={!!props.loader}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+    </Layout>
   )
 }

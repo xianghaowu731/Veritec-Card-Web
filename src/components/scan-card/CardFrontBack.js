@@ -191,10 +191,10 @@ export default function CardFrontBack({ editMode = false }) {
           </div>
         </Fade>
       </div>
-      <div class={classes.mainText}>Ordered: 01/01/1970 - user@email.com</div>
-      <div class={classes.mainText}>Printed: 01/01/1970 - user@email.com</div>
-      <div class={classes.mainText}>NFC: 01/01/1970 - user@email.com</div>
-      <div class={classes.mainText}>BlinxPay: Yes</div>
+      <div className={classes.mainText}>Ordered: 01/01/1970 - user@email.com</div>
+      <div className={classes.mainText}>Printed: 01/01/1970 - user@email.com</div>
+      <div className={classes.mainText}>NFC: 01/01/1970 - user@email.com</div>
+      <div className={classes.mainText}>BlinxPay: Yes</div>
       <PhotoPickerDlg
         open={openPicker}
         title={'Replace Photo?'}

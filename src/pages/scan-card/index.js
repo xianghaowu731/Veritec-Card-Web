@@ -9,8 +9,10 @@ import Typography from '@material-ui/core/Typography'
 
 import useStyles from '../../utils/styles'
 
-import Layout from '../../components/Layout'
+import Layout, { MainLayout } from '../../components/Layout'
 import WebCamView from '../../components/scan-card/WebCamView'
+import Footer from '../../components/footer/footer'
+import { Grid } from '@material-ui/core'
 
 class ScanCard extends React.Component {
   constructor(props) {
@@ -25,8 +27,12 @@ class ScanCard extends React.Component {
     const { dispatch, userData, basicData } = this.props
 
     setTimeout(() => {
+      // navigate('/scan-card/view')
+    }, 2000)
+  }
+
+  onTap = ()=>{
       navigate('/scan-card/view')
-    }, 2000);
 
   }
 
@@ -34,20 +40,10 @@ class ScanCard extends React.Component {
     const { userData, classes } = this.props
 
     return (
-      <Layout menuIndex={0}>
-        <Container maxWidth="md" className={classes.rootContainer}>
-          
-            <WebCamView />
-            
-          <Typography
-            variant="subtitle2"
-            gutterBottom
-            style={{ position: 'absolute', bottom: 10, fontStyle: 'normal' }}
-          >
-            Powered by Veritec © 2020
-          </Typography>
-        </Container>
-      </Layout>
+      <MainLayout menuIndex={0}>
+        <WebCamView onClick={this.onTap}/>
+     
+      </MainLayout>
     )
   }
 }
