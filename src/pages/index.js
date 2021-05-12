@@ -11,8 +11,11 @@ import {
   Paper,
   Button,
   IconButton,
+  Input,
   InputAdornment,
+  OutlinedInput,
   TextField,
+  InputLabel,
 } from '@material-ui/core'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -22,7 +25,7 @@ import Typography from '@material-ui/core/Typography'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import { VColor } from '../utils/constants'
-import {indexStyles} from '../utils/styles'
+import { indexStyles } from '../utils/styles'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -82,10 +85,13 @@ class HomePage extends React.Component {
                     onChange={this.handleChange}
                   />
                 </FormControl>
-                
+
                 <FormControl variant="outlined" fullWidth>
-                  
-                  <TextField
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
+
+                  <OutlinedInput
                     id="outlined-adornment-password"
                     label="Password"
                     variant="outlined"

@@ -1,7 +1,7 @@
 import 'date-fns'
 import React from 'react'
 import { Link, navigate } from 'gatsby'
-import ThemeLayout from '../../components/ThemeLayout'
+import ThemeLayout from '../../../components/ThemeLayout'
 import Container from '@material-ui/core/Container'
 
 import { connect, useDispatch, useSelector } from 'react-redux'
@@ -10,7 +10,7 @@ import { DataGrid } from '@material-ui/data-grid'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 
-import useStyles from '../../utils/styles'
+import useStyles from '../../../utils/styles'
 import TextField from '@material-ui/core/TextField'
 import Search from '@material-ui/icons/Search'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -21,8 +21,8 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 
-import Layout, { MainLayout } from '../../components/Layout'
-import { VColor } from '../../utils/constants'
+import Layout, { MainLayout } from '../../../components/Layout'
+import { VColor } from '../../../utils/constants'
 import { Grid } from '@material-ui/core'
 
 import DateFnsUtils from '@date-io/date-fns'
@@ -30,24 +30,27 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers'
-import Footer from '../../components/footer/footer'
+import Footer from '../../../components/footer/footer'
 
 import { useDemoData } from '@material-ui/x-grid-data-generator'
-import ProgressDlg from '../../components/Dialog/ProgressDlg'
-import { setSelCard } from '../../state/actions'
-import Utils from '../../utils/utils'
+import ProgressDlg from '../../../components/Dialog/ProgressDlg'
+import { setSelCard } from '../../../state/actions'
+import Utils from '../../../utils/utils'
 
 const columns = [
   
   { field: 'status', headerName: 'Status', width: 140 },
-  { field: 'date', headerName: 'Date', width: 140 },
+  { field: 'email', headerName: 'Email', width: 240 },
+  
   { field: 'fname', headerName: 'First Name', width: 140 },
   { field: 'lname', headerName: 'Last Name', width: 140 },  
+  { field: 'date', headerName: 'Date Created', width: 140 },
   { field: 'id', headerName: 'ID', width: 140, hide: true },
 ]
 
 const fakeRow = {
-  status: 'Status 1',
+  status: 'Enabled',
+  email: 'cdasdcascs@asdca.com',
   date: '12/2/2323',
   fname: 'Aalksdjnc',
   lname: 'cvsasdc',  
@@ -113,7 +116,7 @@ export function UsersDT({}) {
 
   const gotoUserView = data => {
     
-    navigate('/users/view')
+    navigate('/admin/users/view')
   }
 
   return (
@@ -165,7 +168,7 @@ class Users extends React.Component {
   }
 
   onNewUser = ()=>{
-    navigate('/users/create')
+    navigate('/admin/users/create')
   }
 
   onTapSearch = ()=>{
@@ -176,7 +179,7 @@ class Users extends React.Component {
     const { userData, classes } = this.props
 
     return (
-        <MainLayout menuIndex={4}>
+        <MainLayout menuIndex={5}>
           <Grid
             container
             spacing={3}

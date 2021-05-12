@@ -41,8 +41,8 @@ const columns = [
   
   { field: 'status', headerName: 'Status', width: 140 },
   { field: 'date', headerName: 'Date', width: 140 },
-  { field: 'fname', headerName: 'First Name', width: 140 },
-  { field: 'lname', headerName: 'Last Name', width: 140 },  
+  { field: 'fname', headerName: 'Status', width: 140 },
+  { field: 'lname', headerName: 'Status', width: 140 },  
   { field: 'id', headerName: 'ID', width: 140, hide: true },
 ]
 
@@ -176,7 +176,7 @@ class Users extends React.Component {
     const { userData, classes } = this.props
 
     return (
-        <MainLayout menuIndex={4}>
+        <MainLayout menuIndex={5}>
           <Grid
             container
             spacing={3}
