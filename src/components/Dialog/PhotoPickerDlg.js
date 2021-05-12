@@ -47,7 +47,7 @@ export default function PhotoPickerDlg({
 
 export function ConfirmDlg({
   title,
-  open,
+  open=false,
   onOk,
   onCancel,
   okTitle = 'Ok',
@@ -64,9 +64,9 @@ export function ConfirmDlg({
     >
       {/* <DialogTitle id="alert-dialog-title">{title}</DialogTitle> */}
       <DialogContent style={{ minWidth: 250 }}>
-        <DialogContentText id="alert-dialog-description">
+        {/* <DialogContentText id="alert-dialog-description"> */}
           {title}
-        </DialogContentText>
+        {/* </DialogContentText> */}
       </DialogContent>
       <DialogActions
         style={{
@@ -91,4 +91,3 @@ export function ConfirmDlg({
     </Dialog>
   )
 }
-

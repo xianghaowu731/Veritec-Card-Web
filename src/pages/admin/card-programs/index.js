@@ -1,7 +1,7 @@
 import 'date-fns'
 import React from 'react'
 import { Link, navigate } from 'gatsby'
-import ThemeLayout from '../../components/ThemeLayout'
+import ThemeLayout from '../../../components/ThemeLayout'
 import Container from '@material-ui/core/Container'
 
 import { connect, useDispatch, useSelector } from 'react-redux'
@@ -10,7 +10,7 @@ import { DataGrid } from '@material-ui/data-grid'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 
-import useStyles from '../../utils/styles'
+import useStyles from '../../../utils/styles'
 import TextField from '@material-ui/core/TextField'
 import Search from '@material-ui/icons/Search'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -21,8 +21,8 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 
-import Layout, { MainLayout } from '../../components/Layout'
-import { VColor } from '../../utils/constants'
+import Layout, { MainLayout } from '../../../components/Layout'
+import { VColor } from '../../../utils/constants'
 import { Grid } from '@material-ui/core'
 
 import DateFnsUtils from '@date-io/date-fns'
@@ -30,27 +30,24 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers'
-import Footer from '../../components/footer/footer'
+import Footer from '../../../components/footer/footer'
 
 import { useDemoData } from '@material-ui/x-grid-data-generator'
-import ProgressDlg from '../../components/Dialog/ProgressDlg'
-import { setSelCard } from '../../state/actions'
-import Utils from '../../utils/utils'
+import ProgressDlg from '../../../components/Dialog/ProgressDlg'
+import { setSelCard } from '../../../state/actions'
+import Utils from '../../../utils/utils'
 
 const columns = [
   
   { field: 'status', headerName: 'Status', width: 140 },
-  { field: 'date', headerName: 'Date', width: 140 },
-  { field: 'fname', headerName: 'Status', width: 140 },
-  { field: 'lname', headerName: 'Status', width: 140 },  
-  { field: 'id', headerName: 'ID', width: 140, hide: true },
+  { field: 'name', headerName: 'Program Name', width: 300 },
+  { field: 'date', headerName: 'Date Created', width: 200 },
 ]
 
 const fakeRow = {
-  status: 'Status 1',
+  status: 'Enabled',
   date: '12/2/2323',
-  fname: 'Aalksdjnc',
-  lname: 'cvsasdc',  
+  name: 'Card Program Name',  
   id: '283401623987',
 }
 
@@ -67,7 +64,7 @@ function loadServerRows({ page, rowsPerPage = 5, data }) {
   })
 }
 
-export function UsersDT({}) {
+export function CardProgramsDT({}) {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 100,
@@ -113,7 +110,7 @@ export function UsersDT({}) {
 
   const gotoUserView = data => {
     
-    navigate('/users/view')
+    navigate('/admin/card-programs/view')
   }
 
   return (
@@ -149,7 +146,7 @@ export function UsersDT({}) {
   )
 }
 
-class Users extends React.Component {
+class CardPrograms extends React.Component {
   constructor(props) {
     super(props)
 
@@ -164,8 +161,8 @@ class Users extends React.Component {
     const { dispatch, userData, basicData } = this.props
   }
 
-  onNewUser = ()=>{
-    navigate('/users/create')
+  onNewProgram = ()=>{
+    navigate('/admin/card-programs/create')
   }
 
   onTapSearch = ()=>{
@@ -192,10 +189,10 @@ class Users extends React.Component {
                 }}
               >
                 <FormControl style={{ width: '100%' }}>
-                  <InputLabel htmlFor="filled-basic">Email Address</InputLabel>
+                  <InputLabel htmlFor="filled-basic">Card Program Name</InputLabel>
                   <Input
                     id="filled-basic"
-                    type={'email'}
+                    type={'text'}
                     value={this.state.email}
                     variant="filled"
                     onChange={e => {
@@ -229,25 +226,24 @@ class Users extends React.Component {
                     this.setState({ status: e.target.value })
                   }}
                 >
-                  <MenuItem value={1}>Enabled</MenuItem>
-                  <MenuItem value={2}>Locked</MenuItem>
-                  <MenuItem value={3}>Disabled</MenuItem>
+                  <MenuItem value={1}>Enabled</MenuItem>                  
+                  <MenuItem value={2}>Disabled</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
 
             <Grid item xs={12}>
-              <UsersDT />
+              <CardProgramsDT />
             </Grid>
-            <Grid item md={2} sm={3} xs={12}>
+            <Grid item md={3} sm={4} xs={12}>
               <Button
                 variant="contained"
                 size="medium"
                 color="primary"
                 fullWidth
-                onClick={this.onNewUser}
+                onClick={this.onNewProgram}
               >
-                New User
+                New Program
               </Button>
             </Grid>
           </Grid>
@@ -262,7 +258,7 @@ export default function(props) {
   const classes = useStyles()
 
   return (
-    <Users
+    <CardPrograms
       {...props}
       dispatch={dispatch}
       userData={userData}

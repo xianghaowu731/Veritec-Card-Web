@@ -65,7 +65,7 @@ class Admin extends React.Component {
               <AdminMenuItem link="/admin/card-programs" title="Manage Card Programs" />
             </Grid>
             <Grid item lg={12} md={12} sm={12} xs={12}>
-              <AdminMenuItem link="/admin/login-message" title="Manage Login Message" />
+              <AdminMenuItem link="/admin/manage/login-message" title="Manage Login Message" />
             </Grid>
           </Grid>
         </Container>

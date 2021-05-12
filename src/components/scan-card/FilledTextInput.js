@@ -11,12 +11,13 @@ import Button from '@material-ui/core/Button'
 import useStyles from '../../utils/styles'
 
 import Layout from '../../components/Layout'
-import { Grid, Paper, useTheme } from '@material-ui/core'
+import { Grid, IconButton, Paper, useTheme } from '@material-ui/core'
 import Constants, { VColor } from '../../utils/constants'
 
 import Utils from '../../utils/utils'
+import { Delete } from '@material-ui/icons'
 
-export default function FilledTextInput({ label, type, placeholder }) {
+export default function FilledTextInput({ label, type, placeholder, removable, editMode, onDelete }) {
 
     const [focused, setFocused] = useState(false)
 
@@ -28,6 +29,7 @@ export default function FilledTextInput({ label, type, placeholder }) {
         backgroundColor: VColor.lightGray,
         padding: 5,
         marginBottom: 20,
+        position:'relative'
       }}
     >
       <div className={classes.labelText} style={{ marginLeft: 3 }}>
@@ -52,6 +54,13 @@ export default function FilledTextInput({ label, type, placeholder }) {
           borderBottomColor: VColor.blue
         }}
       />
+      {
+        removable && editMode ? (
+          <IconButton style={{position:'absolute', right: 0, top: 10}} onClick={onDelete}>
+            <Delete/>
+          </IconButton>
+        ) : null
+      }
     </div>
   )
 }
