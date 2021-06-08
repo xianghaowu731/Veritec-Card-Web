@@ -1,28 +1,12 @@
 import React, { useState } from 'react'
-import { Link, navigate } from 'gatsby'
 import ThemeLayout from '../components/ThemeLayout'
 import Container from '@material-ui/core/Container'
 
-import { connect, useDispatch, useSelector } from 'react-redux'
-
-import barLogo from '../assets/images/bar-logo.png'
 import {
-  Paper,
-  Button,
-  Toolbar,
-  IconButton,
-  Menu,
-  AppBar,
   Backdrop,
   CircularProgress,
 } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
-
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
 import Header from './header/header'
-
-import { VColor } from '../utils/constants'
 import Footer from './footer/footer'
 import useStyles from '../utils/styles'
 
@@ -44,7 +28,7 @@ export function MainLayout(props) {
   
   return (
     <Layout menuIndex={props.menuIndex}>
-      <Container maxWidth="md" className={classes.cardViewRoot} style={{...props.style,}}>
+      <Container className={classes.cardViewRoot} style={{...props.style,}}>
         <div
           style={{
             minHeight: '100%',

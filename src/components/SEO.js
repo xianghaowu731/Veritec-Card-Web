@@ -10,15 +10,12 @@ const query = graphql`
         title
         author
         description
-        siteUrl
-        social {
-          twitter
-        }
+        siteUrl       
       }
     }
   }
 `
-
+ 
 function SEO({ meta, image, title, description, slug }) {
   return (
     <StaticQuery
@@ -59,11 +56,7 @@ function SEO({ meta, image, title, description, slug }) {
               {
                 name: 'twitter:card',
                 content: 'summary',
-              },
-              {
-                name: 'twitter:creator',
-                content: siteMetadata.social.twitter,
-              },
+              },              
               {
                 name: 'twitter:title',
                 content: title || siteMetadata.title,

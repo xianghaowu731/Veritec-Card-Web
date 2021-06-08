@@ -123,6 +123,7 @@ export class ViewCard extends React.Component {
       : {
           minWidth: '90vw',
         }
+        
     return (
       <MainLayout menuIndex={this.props.menuIndex}>
         <Grid

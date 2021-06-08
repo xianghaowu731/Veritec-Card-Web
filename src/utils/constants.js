@@ -21,6 +21,7 @@ export const Constants = {
   cardSize:{
     width: 338,
     height: 213,
+    cardRate: 338/213, 
     codeSize: 106,
     margin: 15,
     paddingTop:'63.01%',

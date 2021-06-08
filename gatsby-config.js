@@ -1,12 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'SkimpyList',
-    author: 'lnicmats',
-    description: 'Fan & Creator Social Community.',
-    siteUrl: 'https://anandamritraj.in',
-    social: {
-      twitter: '@anamritraj',
-    },
+    title: 'Veritec',
+    author: 'zyy',
+    description: 'Veritec Card',
+    siteUrl: 'https://localhost',    
   },
   pathPrefix: '/',
   plugins: [

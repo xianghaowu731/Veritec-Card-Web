@@ -17,12 +17,16 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Zoom from '@material-ui/core/Zoom'
 import { useTheme } from '@material-ui/core'
 import Utils from '../../utils/utils'
-import PhotoPickerDlg from '../../components/Dialog/PhotoPickerDlg'
+import PhotoPickerDlg, { CropType } from '../../components/Dialog/PhotoPickerDlg'
 
 import Switch from '@material-ui/core/Switch';
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
+
+
+export const PickerMode = {
+  Front: 1,
+  Logo: 2
+}
 
 export default function CardProgramsLeft({ isCreateMode = false, editMode = false, disabledProgram=false }) {
   const classes = useStyles()
@@ -36,6 +40,7 @@ export default function CardProgramsLeft({ isCreateMode = false, editMode = fals
   const [cardFront, setCardFront ] = React.useState( isCreateMode ? undefined : cardFrontImg)
   const [logo ,setLogo] = React.useState(isCreateMode ? undefined : logoimg)
 
+  const [pickerMode, setPickerMode] = React.useState(PickerMode.Front)
   const [openPicker, setOpenPicker] = React.useState(false)
 
   return (
@@ -62,7 +67,8 @@ export default function CardProgramsLeft({ isCreateMode = false, editMode = fals
             position: 'absolute',
             top: 0,
             left: 0,
-            // objectFit: 'contain',
+
+            objectFit: 'contain',
             borderRadius: 7,
           }}
         />
@@ -86,6 +92,7 @@ export default function CardProgramsLeft({ isCreateMode = false, editMode = fals
               style={{ color: VColor.white }}
               onClick={() => {
                 setOpenPicker(true)
+                setPickerMode(PickerMode.Front)
               }}
             >
               change photo
@@ -97,7 +104,7 @@ export default function CardProgramsLeft({ isCreateMode = false, editMode = fals
       <div style={{ marginTop: 20, position: 'relative' }}>
         <img
           src={logo}
-          style={{ width: '100%', objectFit: 'contain', minHeight: 80, marginBottom: 10 }}
+          style={{ width: '100%', objectFit: 'contain', minHeight: 80, marginBottom: 10, }}
         />
         <Fade in={editMode}>
           <div
@@ -119,6 +126,8 @@ export default function CardProgramsLeft({ isCreateMode = false, editMode = fals
               style={{ color: VColor.white }}
               onClick={() => {
                 setOpenPicker(true)
+                setPickerMode(PickerMode.Logo)
+
               }}
             >
               change photo
@@ -150,13 +159,17 @@ export default function CardProgramsLeft({ isCreateMode = false, editMode = fals
       <PhotoPickerDlg
         open={openPicker}
         title={'Replace Photo?'}
-        onUpload={() => {
-          setOpenPicker(false)
-        }}
-        onCamera={() => {
-          setOpenPicker(false)
-        }}
+        cropType={pickerMode == PickerMode.Front ? CropType.CardFront : CropType.Logo}
         handleClose={() => {
+          setOpenPicker(false)
+        }}
+        onResult={img=>{
+          // setCurImage(img)
+          if(pickerMode == PickerMode.Front){
+            setCardFront(img)
+          }else if(pickerMode == PickerMode.Logo){
+            setLogo(img)
+          }
           setOpenPicker(false)
         }}
       />

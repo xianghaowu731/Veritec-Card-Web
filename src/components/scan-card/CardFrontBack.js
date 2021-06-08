@@ -1,7 +1,4 @@
-import React from 'react'
-import { Link, navigate } from 'gatsby'
-import ThemeLayout from '../../components/ThemeLayout'
-import Container from '@material-ui/core/Container'
+import React, { useState } from 'react'
 
 import useStyles from '../../utils/styles'
 
@@ -11,8 +8,6 @@ import cardLogo from '../../assets/images/logo.png'
 import matrix from '../../assets/images/matrix.png'
 import Constants, { VColor } from '../../utils/constants'
 import modelImg from '../../assets/images/model.jpeg'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import Zoom from '@material-ui/core/Zoom'
 import { useTheme } from '@material-ui/core'
 import Utils from '../../utils/utils'
 import PhotoPickerDlg from '../../components/Dialog/PhotoPickerDlg'
@@ -24,6 +19,8 @@ export default function CardFrontBack({ editMode = false }) {
     enter: theme.transitions.duration.enteringScreen,
     exit: theme.transitions.duration.leavingScreen,
   }
+
+  const [curImage, setCurImage] = useState(modelImg)
 
   const [openPicker, setOpenPicker] = React.useState(false)
 
@@ -124,10 +121,13 @@ export default function CardFrontBack({ editMode = false }) {
 
               <div style={{ resize: 'vertical', heihgt: 'auto' }}>
                 <img
-                  src={modelImg}
+                  src={curImage}
                   style={{
                     width: `${Constants.cardSize.photoRate * 100}%`,
+                    
                     objectFit: 'contain',
+                    aspectRatio:1,
+
                     margin: 0,
                     marginBottom: -8,
                   }}
@@ -161,7 +161,7 @@ export default function CardFrontBack({ editMode = false }) {
 
       <div style={{ marginTop: 20, position: 'relative' }}>
         <img
-          src={modelImg}
+          src={curImage}
           style={{ width: '100%', objectFit: 'contain', marginBottom: 10 }}
         />
         <Fade in={editMode}>
@@ -198,13 +198,12 @@ export default function CardFrontBack({ editMode = false }) {
       <PhotoPickerDlg
         open={openPicker}
         title={'Replace Photo?'}
-        onUpload={() => {
-          setOpenPicker(false)
-        }}
-        onCamera={() => {
-          setOpenPicker(false)
-        }}
+       
         handleClose={() => {
+          setOpenPicker(false)
+        }}
+        onResult={img=>{
+          setCurImage(img)
           setOpenPicker(false)
         }}
       />

@@ -1,20 +1,10 @@
 import React from 'react'
-import { Link, navigate } from 'gatsby'
-import ThemeLayout from '../../components/ThemeLayout'
-import Container from '@material-ui/core/Container'
-
 import useStyles from '../../utils/styles'
 
 import { Fade, Grid, Paper, Button } from '@material-ui/core'
 import CardFront from '../../assets/images/card-front.png'
-import cardLogo from '../../assets/images/logo.png'
-import matrix from '../../assets/images/matrix.png'
 import Constants, { VColor } from '../../utils/constants'
-import modelImg from '../../assets/images/model.jpeg'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import Zoom from '@material-ui/core/Zoom'
 import { useTheme } from '@material-ui/core'
-import Utils from '../../utils/utils'
 import PhotoPickerDlg from '../../components/Dialog/PhotoPickerDlg'
 
 export default function CardFrontPhoto({ editMode = true, cardFrontImage }) {
@@ -24,7 +14,7 @@ export default function CardFrontPhoto({ editMode = true, cardFrontImage }) {
     enter: theme.transitions.duration.enteringScreen,
     exit: theme.transitions.duration.leavingScreen,
   }
-
+  const [curImg, setCurImg] = React.useState()
   const [openPicker, setOpenPicker] = React.useState(false)
 
   return (
@@ -51,7 +41,6 @@ export default function CardFrontPhoto({ editMode = true, cardFrontImage }) {
             position: 'absolute',
             top: 0,
             left: 0,
-            // objectFit: 'contain',
             borderRadius: 7,
           }}
         />
@@ -63,27 +52,19 @@ export default function CardFrontPhoto({ editMode = true, cardFrontImage }) {
           position: 'relative',
           borderRadius: 7,
           height: 300,
-          // border:'1px solid green'
         }}
         elevation={4}
       >
-        <div
-          style={
-            {
-              //  border: '1px solid red',
-            }
-          }
-        >
+        <div>
           <img
-            src={modelImg}
+            src={curImg}
             style={{
               width: '100%',
               height: 300,
               objectFit: 'cover',
               marginBottom: 0,
               borderRadius: 7,
-              display:'none'
-              // border: '1px solid blue',
+              display:curImg ? 'block' : 'none'
             }}
           />
         </div>
@@ -120,13 +101,12 @@ export default function CardFrontPhoto({ editMode = true, cardFrontImage }) {
       <PhotoPickerDlg
         open={openPicker}
         title={'Add a photo?'}
-        onUpload={() => {
-          setOpenPicker(false)
-        }}
-        onCamera={() => {
-          setOpenPicker(false)
-        }}
+
         handleClose={() => {
+          setOpenPicker(false)
+        }}
+        onResult={img=>{
+          setCurImg(img)
           setOpenPicker(false)
         }}
       />

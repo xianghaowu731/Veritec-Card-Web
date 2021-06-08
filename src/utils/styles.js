@@ -11,10 +11,11 @@ const useStyles = makeStyles(theme => ({
       flexGrow:1,
     },
     tollbar: {
-      minHeight: 55,
+      minHeight: '55px !important',
     },
     backdrop: {
-      zIndex: theme.zIndex.drawer + 1,
+      position:'fixed',
+      zIndex: '1000000 !important',
       color: '#fff',
     },
     menuList:{    
@@ -67,11 +68,11 @@ const useStyles = makeStyles(theme => ({
       color: theme.palette.text.secondary,
       flexGrow:1 ,
       minWidth: 300,
-      maxWidth: 338,
+      maxWidth: '338px !important',
     },
 
     cardViewRoot:{
-      maxWidth: '100vw',
+      maxWidth: '100vw !important',
       padding: 20,
       paddingBottom: 5,
       height:'calc(100vh - 70px)',

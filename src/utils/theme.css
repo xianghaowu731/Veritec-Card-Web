@@ -34,16 +34,15 @@ h6 {
   padding: 15px 10px !important;
 }
 
-.rootContainer{
+/* .rootContainer{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
   height: 100vh;
-  /* overflow: hidden; */
-  /* border: 5px solid red; */
-}
+
+} */
 
 ::-webkit-scrollbar { 
   width: 2 !important;

@@ -66,9 +66,6 @@ export function AlertDlg({
   onCancel,
   onClose,
 }) {
-  // const [open, setOpen] = React.useState(false);
-  // const theme = useTheme();
-  // const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleOk = () => {
     onClose()
@@ -91,9 +88,6 @@ export function AlertDlg({
         aria-labelledby="customized-dialog-title"
         open={isOpen}
       >
-        {/* <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          {title}
-        </DialogTitle> */}
 
         <DialogContent dividers>
           <Typography variant="subtitle1" gutterBottom>
